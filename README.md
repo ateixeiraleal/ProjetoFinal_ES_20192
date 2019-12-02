@@ -1,5 +1,19 @@
 <h1>Projeto</h1>
-<p>YourEvent é um software com o objetivo de auxiliar a organização para as empresas relacionadas a eventos de um modo geral.</p>
+<p>YourEvent é um software com o objetivo de auxiliar empresas relacionads a eventos e/ou promotores nas atividades atreladas
+a organização de eventos das mais variadas natureza.</p>
+
+<h2><strong>Tecnologias utilizadas</strong></h2>
+<ul>
+  <li>TerraER 3.13 : Modelo lógico</li><br>
+  <li>MySQL Workbench 8.0 :
+    <ul type="circle">
+      <li>Modelo conceitual</li>
+      <li>Script SQL</li>
+      <li>Script SQL - Adição de dados</li>
+    </ul>
+  </li><br>
+  <li>WAMPSERVER 2.5 : Banco de dados</li>
+</ul>
 
 <h2><strong>Regras de uso do git:</strong></h2>
 <ul>
