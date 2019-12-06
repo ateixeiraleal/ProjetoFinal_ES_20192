@@ -348,9 +348,6 @@ ADD CONSTRAINT `fk_CONVIDADO_has_EVENTO_EVENTO1`
     REFERENCES `EVENTO` (`codigo`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
-    
--- Deleta a tabela BUFFET_TELEFONES. A cláusula RESTRICT impede que a mesma seja deletada caso haja alguma restrição ou visão para a tabela em questão.
-DROP TABLE `BUFFET_TELEFONES` RESTRICT;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
