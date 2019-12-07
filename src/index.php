@@ -50,8 +50,8 @@
             <select class="form-control" id="selectEvento" name="selectEvento"></select>
           </div>
           <div class="form-group col-md-6">
-            <label for="inputNome">Valor</label>
-            <input type="number" class="form-control" id="inputNome" name="inputNome" min="0.00" step="0.01">
+            <label for="inputValor">Valor</label>
+            <input type="number" class="form-control" id="inputValor" name="inputValor" min="0.00" step="0.01">
           </div>
         </div>
         
@@ -79,12 +79,15 @@
 
           $sql = "SELECT * FROM `ORCAMENTO` O JOIN `EVENTO` E ON(O.EVENTO_codigo = E.codigo)";
           if ($result = mysqli_query($mysqli, $sql)) {
-            while ($obj = mysqli_fetch_object($result)) {; ?>
+            while ($obj = mysqli_fetch_object($result)) {; 
+              $dti = date('d/m/Y h:m',strtotime($obj->inicio)); 
+              $dtf = date('d/m/Y h:m',strtotime($obj->termino)); 
+              $dtv = date('d/m/Y',strtotime($obj->data_validade));?>
             <tr>
               <td><?php echo $obj->descricao; ?></td>
-              <td><?php echo $obj->inicio; ?></td>
-              <td><?php echo $obj->termino; ?></td>
-              <td><?php echo $obj->data_validade; ?></td>
+              <td><?php echo $dti; ?></td>
+              <td><?php echo $dtf; ?></td>
+              <td><?php echo $dtv; ?></td>
               <td><?php echo $obj->valor; ?></td>
               <td class="text-center"><a href="#" class="edita"  cod="<?php echo $obj->codigo; ?>"><i class="fas fa-user-edit"></i></a></td>
               <td class="text-center"><a href="#" class="remove" cod="<?php echo $obj->codigo; ?>" ><i class="fas fa-user-minus"></i></a></td>

@@ -10,11 +10,14 @@ $mensagem_retorno = "";
 
 if ($result = mysqli_query($mysqli, $sql)) {
   while ($obj = mysqli_fetch_object($result)) {
+    $dti = date('d/m/Y h:m',strtotime($obj->inicio)); 
+    $dtf = date('d/m/Y h:m',strtotime($obj->termino)); 
+    $dtv = date('d/m/Y',strtotime($obj->data_validade));
     $mensagem_retorno .= "<tr>";
     $mensagem_retorno .= "  <td>$obj->descricao </td>";
-    $mensagem_retorno .= "  <td>$obj->inicio</td>";
-    $mensagem_retorno .= "  <td>$obj->termino</td>";
-    $mensagem_retorno .= "  <td>$obj->data_validade</td>";
+    $mensagem_retorno .= "  <td>$dti</td>";
+    $mensagem_retorno .= "  <td>$dtf</td>";
+    $mensagem_retorno .= "  <td>$dtv</td>";
     $mensagem_retorno .= "  <td>$obj->valor</td>";
     $mensagem_retorno .= "  <td class='text-center'> <a href='#' class='edita'  cod='$obj->codigo' ><i class='fas fa-user-edit'></i></a> </td>";
     $mensagem_retorno .= "  <td class='text-center'> <a href='#' class='remove' cod='$obj->codigo' ><i class='fas fa-user-minus'></i></a> </td>";

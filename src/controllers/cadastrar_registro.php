@@ -3,99 +3,36 @@
 include("../config/db.php");
 
 // valores do formulario recebidos via post
-$nome = $_POST["inputNome"];
-$cnpj = $_POST['inputCnpj'];
-$telefone = $_POST["inputTel"];
+$validade = $_POST["inputDataValidade"];
+$contratante = $_POST['selectContratante'];
+$evento = $_POST["selectEvento"];
+$valor = $_POST["inputValor"];
+$data_cadastro = date("Y/m/d");
 
 
-// Campos obrigatórios
 
-if (!empty($_POST)) {
-  if (isset($_POST['inputCnpj']) || isset($_POST['inputNome'])) {
-    if (empty($_POST['inputCnpj']) || empty($_POST['inputNome'])) {
-      echo json_encode(
-        array(
-          'success' => false,
-          'message' => "Os campos marcados com ( * ) são obrigatórios"
-        )
-      );
-      exit;
-    }
-  }
+$sql = "INSERT INTO ORCAMENTO (`data`, data_validade, CONTRATANTE_id, EVENTO_codigo, valor)
+      VALUES ('$data_cadastro','$validade', '$contratante', '$evento', '$valor')";
+
+if ($mysqli->query($sql) === true) {
+  echo json_encode(
+    array(
+      'success' => true,
+      'message' => 'Cadastrado com sucesso'
+    )
+  );
+} else {
+  echo json_encode(
+    array(
+      'success' => false,
+      'message' => "Error: " + $mysqli->error
+    )
+  );
 }
 
-
-// verifica se o cnpj é um cnpj válido
-if (!validar_cnpj($cnpj)) {
-  echo json_encode(
-    array(
-      'success' => false,
-      'message' => 'O cnpj fornecido não é um cnpj válido'
-    )
-  );
-  exit;
-} 
-
-
-// verifica se o cnpj é um cnpj válido
-if (!phoneValidate($telefone)) {
-  echo json_encode(
-    array(
-      'success' => false,
-      'message' => 'O telefone fornecido não é um telefone válido'
-    )
-  );
-  exit;
-} 
-
-
- 
-// Query para verificar se tem o cnpj no banco
-$results = $mysqli->query("SELECT COUNT(*) FROM BUFFET WHERE cnpj = '$cnpj'");
-$get_total_rows = $results->fetch_row();
-
-
-if ($get_total_rows[0] >= 1) {
-  echo json_encode(
-    array(
-      'success' => false,
-      'message' => 'O cnpj fornecido já existe no banco de dados'
-    )
-  );
-} else { // Caso não exista insere os dados no banco
-  $sql = "INSERT INTO BUFFET (cnpj, nome)
-        VALUES ('$cnpj', '$nome')";
-
-  $sqlTelBuffet = "INSERT INTO BUFFET_TELEFONES (numero, BUFFET_cnpj)
-        VALUES ('$telefone', '$cnpj')";
-
-  if ($mysqli->query($sql) === true) {
-    if ($mysqli->query($sqlTelBuffet) === true) {
-      echo json_encode(
-        array(
-          'success' => true,
-          'message' => 'Cadastrado com sucesso'
-        )
-      );
-    } else {
-      echo json_encode(
-        array(
-          'success' => true,
-          'message' => 'Erro ao inserir o telefone do Buffet'
-        )
-      );
-    }
-  } else {
-    echo json_encode(
-      array(
-        'success' => false,
-        'message' => "Error: " + $mysqli->error
-      )
-    );
-  }
 
   $mysqli->close();
-}
+
 
 
 
