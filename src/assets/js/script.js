@@ -210,8 +210,8 @@ $(document).on("submit", "#form-edita-registro", function (event) {
 // Preenche modal com dados do registro que será editado
 $(document).on("click", ".edita", function () {
   // e.preventDefault();
-  var cnpj = $(this).attr("cod");
-  var tel = $(this).attr("tel");
+  var id = $(this).attr("cod");
+  $("#orcamento_id_editar").val(id);
 
   var url = window.location.href;
   url = url.split("/"); //quebra o endeço de acordo com a / (barra)
@@ -221,23 +221,17 @@ $(document).on("click", ".edita", function () {
   $.ajax({
     type: "POST",
     url: url_script_php,
-    data: { 'cnpj': cnpj },
+    data: { 'id': id },
     dataType: "json",
     success: function (data) { /* sucesso */
 
       if (data.success) {
-        $.each(data.listaDeBuffets, function (i, value) {
-
-          if (value.cnpj === cnpj && tel === value.telefone) {
-            $('#form-edita-registro')[0].reset();
-            $('#inputNomeEdit').val(value.nome);
-            $('#inputCnpjEdit').val(value.cnpj);
-            $('#cnpjParaEditar').val(value.cnpj);
-            $('#telParaEditar').val(value.telefone);
-            $('#inputTelEdit').val(value.telefone);
-            $('#modalEditarRegistro').modal('show');
-          }
-        });
+        $('#form-edita-registro')[0].reset();
+        $('#inputDataValidadeEdit').val(data.listaDeOrcamentos[0].validade);
+        $('#inputValorEdit').val(data.listaDeOrcamentos[0].valor);
+        $('#orcamento_id_editar').val(data.listaDeOrcamentos[0].id);
+        $('#modalEditarRegistro').modal('show');
+        
       }
 
     }

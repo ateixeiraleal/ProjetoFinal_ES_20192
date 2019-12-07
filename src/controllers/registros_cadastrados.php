@@ -3,7 +3,7 @@
 include("../config/db.php");
 
 // $sql = "SELECT * FROM BUFFET WHERE 1 ORDER BY BUFFET.nome ASC";
-$sql = "SELECT * FROM `ORCAMENTO` O JOIN `EVENTO` E ON(O.EVENTO_codigo = E.codigo)";
+$sql = "SELECT O.codigo, O.data_validade, O.valor, E.descricao, E.inicio, E.termino FROM `ORCAMENTO` O JOIN `EVENTO` E ON(O.EVENTO_codigo = E.codigo)";
 
 // $data = $obj->dataNascimento;
 $mensagem_retorno = "";

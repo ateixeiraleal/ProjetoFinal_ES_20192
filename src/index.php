@@ -77,7 +77,7 @@
 
           <?php 
 
-          $sql = "SELECT * FROM `ORCAMENTO` O JOIN `EVENTO` E ON(O.EVENTO_codigo = E.codigo)";
+          $sql = "SELECT O.codigo, O.data_validade, O.valor, E.descricao, E.inicio, E.termino FROM `ORCAMENTO` O JOIN `EVENTO` E ON(O.EVENTO_codigo = E.codigo)";
           if ($result = mysqli_query($mysqli, $sql)) {
             while ($obj = mysqli_fetch_object($result)) {; 
               $dti = date('d/m/Y h:m',strtotime($obj->inicio)); 
@@ -119,25 +119,16 @@
 
             <!-- FORM ATUALIZAR REGISTRO -->
             <form id="form-edita-registro">
-              <input type="hidden" id="cnpjParaEditar" name="cnpjParaEditar" value="">
-              <input type="hidden" id="telParaEditar" name="telParaEditar" value="">
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputNomeEdit">Nome*</label>
-                  <input type="text" class="form-control" id="inputNomeEdit" name="inputNomeEdit" placeholder="Nome">
-                </div>
-              </div>
+              <input type="hidden" id="orcamento_id_editar" name="orcamento_id_editar" value="">
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputCnpjEdit">cnpj*</label>
-                  <input type="text" class="form-control" id="inputCnpjEdit" name="inputCnpjEdit" placeholder="cnpj">
+                  <label for="inputDataValidadeEdit">Data válidade</label>
+                  <input type="date" class="form-control" id="inputDataValidadeEdit" name="inputDataValidadeEdit" placeholder="Data Válidade">
                 </div>
-
-                <div class="form-group col-md-4">
-                  <label for="inputTelEdit">Telefone/Celular</label>
-                  <input type="tel" class="form-control" id="inputTelEdit" name="inputTelEdit">
+                <div class="form-group col-md-6">
+                  <label for="inputValorEdit">Valor</label>
+                  <input type="number" class="form-control" id="inputValorEdit" name="inputValorEdit" min="0.00" step="0.01">
                 </div>
-                
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
