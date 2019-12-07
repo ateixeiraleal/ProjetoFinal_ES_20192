@@ -242,7 +242,8 @@ $(document).on("click", ".edita", function () {
 $(document).on("click", "#removerRegistro", function () {
   // e.preventDefault();
 
-  var cnpj = $(this).attr("cod");
+  var id = $(this).attr("cod");
+  console.log(id)
 
   var url = window.location.href;
   url = url.split("/"); //quebra o endeço de acordo com a / (barra)
@@ -252,7 +253,7 @@ $(document).on("click", "#removerRegistro", function () {
   $.ajax({
     type: "POST",
     url: url_script_php,
-    data: { 'cnpj': cnpj },
+    data: { 'id': id },
     dataType: "json",
     success: function (data) { /* sucesso */
 

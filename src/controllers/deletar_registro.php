@@ -2,15 +2,16 @@
 // configurações do banco
 include("../config/db.php");
 
-// cnpj a ser deletado
-$cnpj = $_POST['cnpj'];
+// id a ser deletado
 
 
 if (!empty($_POST)) {
-  if (isset($_POST['cnpj'])) {
-    if (!empty($_POST['cnpj'])) {
-      // Query para verificar se tem o cnpj no banco
-      $sql = "DELETE FROM BUFFET WHERE cnpj = '$cnpj'";
+  if (isset($_POST['id'])) {
+    if (!empty($_POST['id'])) {
+      $id = $_POST['id'];
+
+      // Query para verificar se tem o id no banco
+      $sql = "DELETE FROM ORCAMENTO WHERE codigo = '$id'";
       if ($mysqli->query($sql) === true) {
         echo json_encode(
           array(
@@ -32,7 +33,7 @@ if (!empty($_POST)) {
       echo json_encode(
         array(
           'success' => false,
-          'message' => "cnpj não definido"
+          'message' => "id não definido"
         )
       );
     }
