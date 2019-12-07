@@ -4,29 +4,29 @@ use trabalho;
 -- `CONTRATANTE`
 -- -----------------------------------------------------
 insert into CONTRATANTE
-values();
+values('Rock an rio');
 insert into CONTRATANTE
-values();
+values('Lolapoloza');
 insert into CONTRATANTE
-values();
+values('woodstock');
 insert into CONTRATANTE
-values();
+values('Planeta Brasil');
 insert into CONTRATANTE
-values();
+values('Legalize já');
 insert into CONTRATANTE
-values();
+values('Encontro das Tribos');
 insert into CONTRATANTE
-values();
+values('Republica X');
 insert into CONTRATANTE
-values();
+values('Republica Y');
 insert into CONTRATANTE
-values();
+values('Republica Z');
 insert into CONTRATANTE
-values();
+values('Republica T');
 insert into CONTRATANTE
-values();
+values('Republica O');
 insert into CONTRATANTE
-values();
+values('Republica I');
 
 
 -- -----------------------------------------------------
