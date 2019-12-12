@@ -1,0 +1,8 @@
+#ignora readme.txt
+README.TXT
+
+#ignora pasta com o nome
+output/
+
+#  ignora programa java
+*.java
