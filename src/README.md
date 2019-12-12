@@ -1,3 +1,0 @@
-=======
-# TrabalhoBd
-Trabalho bd
